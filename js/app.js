@@ -18,42 +18,89 @@ hover.addEventListener('mouseleave', function(event){
 //'The instantly recognizable Jumpman silhouette made its debut with the Air Jordan 3 during Michael Jordan's 1987-88 NBA season.'
 let name = document.querySelector('#name2')
 name.addEventListener('click',function(event){
-    if(newDiv.style.display === 'none'){
-    newDiv.style.display = 'block'
+    if(descrip2.style.display === 'none'){
+    descrip2.style.display = 'block'
     }else{
-        newDiv.style.display = 'none'
+        descrip2.style.display = 'none'
     }
     
 })
 
-
 //You'll need to:
 // create a div element with an id of 'descrip2'
 //append this element to the div element with the id of 'name2' 
-var newDiv = document.createElement('div')
-newDiv.id = 'descrip2'
-newDiv.innerHTML = "The instantly recognizable Jumpman silhouette made its debut with the Air Jordan 3 during Michael Jordan's 1987-88 NBA season."
-name.appendChild(newDiv)
+var descrip2 = document.createElement('div')
+descrip2.id = 'descrip2'
+descrip2.innerHTML = "The instantly recognizable Jumpman silhouette made its debut with the Air Jordan 3 during Michael Jordan's 1987-88 NBA season."
+name.appendChild(descrip2)
 //4. Add events to the all the thumbs up icon that will add a count for each time the icon is clicked on for any shoe.
-var thumb = document.querySelectorAll('#thumbs')
-for (let i = 0; i < thumb.length; i++) {
-    thumb[i].onclick = count++
+let thumb = document.querySelectorAll('.fa-thumbs-up');
+for(let i = 0; i<thumb.length; i++){
+  
+    thumb[i].addEventListener('click', count)
+     var counterBox = document.createElement('div');
+    counterBox.className = 'counter'
+    thumb[i].appendChild(counterBox)
     
-}
-var count = document.createElement('div');
-count.innerHTML = 0
-console.log(thumb)
-// thumb.addEventListener('click',function(){
-//     count++
-// })
+    
+  }
+  
+  function count(){
+    
+    var likes = this.querySelector('.counter');
+    likes.innerHTML++;
+  }
 //5. Add an event to the plus icon that will increment the price of the Air Jordan V shoe each time the icon is clicked on.
+let increaseNumber = document.querySelectorAll('.far');
+increaseNumber[8].addEventListener('click',more);
+function more() {
+    let jordanV = document.querySelector('#price4').childNodes[0].nodeValue++;
+}
+
+
 
 //6. Add an event to the minus icon that will decrement the price of the Air Jordan VI shoe each time the icon is clicked on.
-
+increaseNumber[11].addEventListener('click',less)
+function less(){
+    let jordanVI = document.querySelector('#price5').childNodes[0].nodeValue--;
+}
 //7. Add an event to the Air Jordan XI shoe that will show another colorway for that shoe after hovering over the image. 
-
+let JordanXI = document.getElementsByTagName('img')
+JordanXI[6].addEventListener('mouseover',pic)
+JordanXI[6].addEventListener('mouseout',pic)
+function pic(){
+if(JordanXI[6].src === 'https://www.sneakerlegends.com/images/stories/virtuemart/product/378037623%20378037623%20378037623%20378037623.jpg'){
+    JordanXI[6].src = 'https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/0/1/012597_1.jpg'
+}else {
+    JordanXI[6].src = 'https://www.sneakerlegends.com/images/stories/virtuemart/product/378037623%20378037623%20378037623%20378037623.jpg'
+}
+}
 //8. Add an event to the Air Jordan XII shoe that will increase the image by 50% after clicking on the image.
-
+JordanXI[7].addEventListener('click',bigger)
+function bigger(){
+   JordanXI[7].style.height += '150%'
+   JordanXI[7].style.width += '150%'
+}
 //9. Add events to both the plus and minus icon that will add or decrease the price each time the respective icon is clicked on.
+var targetPlus = document.getElementById('oneUp');
+var targetMinus = document.getElementById('oneDown');
+targetPlus.addEventListener('click',oneUP)
+targetMinus.addEventListener('click',oneDown)
+// console.log(upByOne)
+function oneDown(){
+    var downByOne = document.querySelector('#price8').childNodes[0].nodeValue--;
+}
+function oneUP() {
+    var upByOne = document.querySelector('#price8').childNodes[0].nodeValue++;
+}
+
 
 //10. Add an event to the Air Jordan XXVIII shoe that will show the famous 'crying Michael Jordan' meme after clicking on the image.
+JordanXI[9].addEventListener('click',cryFace)
+function cryFace() {
+    if(JordanXI[9].src === 'https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/a/i/air-jordan-28-photo-blue-white-black-011977_1.jpg'){
+        JordanXI[9].src = 'https://i.ytimg.com/vi/HsSJU0RTggY/maxresdefault.jpg'
+    }else{
+        JordanXI[9].src = 'https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/a/i/air-jordan-28-photo-blue-white-black-011977_1.jpg'
+    }
+}
